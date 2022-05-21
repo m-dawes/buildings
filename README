@@ -1,0 +1,63 @@
+############################################################
+#                                                          #
+#               README: buildings.sage                     #
+#                                                          #
+############################################################
+
+
+== Introduction ==
+
+The file buildings.sage contains routines for calculating Tits' buildings and associated structures for certain subgroups of O(2,n). It is written for the Sage computer algebra system ( https://www.sagemath.org/ ): if you are familiar with Python, you should be familiar with Sage.
+
+The code accompanies the paper 'Orbits in Lattices and Applications to Geometry and Computer Arithmetic'.
+
+We consider 4 families of subgroup, each of which has its own class.
+
+The class SubGp_GK  corresponds to O^+(2U+<-6>+<-2>)
+The class SubGp_A2t corresponds to  \tilde{O}^+(2U+A2)
+The class SubGp_UU2A2t corresponds to  \tilde{O}^+(U+U(2)+A2)
+The class SubGp_UUmA2t corresponds to \tilde{O}^+(U+U(m)+A2).
+
+The classes O^+(2U+<-6>+<-2>), \tilde{O}^+(2U+A2) \tilde{O}^+(U+U(2)+A2) are initialised without arguments.
+
+The class SubGp_UUmA2t is initialised by (m, N) where m and N are positve integers and m corresponds to the m in the lattice U+U(m)+A2.
+
+The integer N corresponds to the principal congruence subgroup \Gamma(N) and is used when calculating incidence relations, as explained in Section 3 of the paper.
+
+Let L=2U+A2 and let G = O^+(L) and, for a class H, let g(H) denote the underlying group. Let e1, e2 \in L be the elements (1,0,0,...), (0,0,1,0,....) in 2U.
+
+The main method of each class is  H.building(), which  calculates incidence relations between lines and planes. It returns a list of pairs (i,j) such that p[i] is incident to l[j].
+
+H.building will also setup:
+
+   H.lines, which contains a list of orbits of totally isotropic lines in L \otimes QQ under g(H).
+   The orbits are given by a list l of elements of G. Each element l[i] corresponds to the line l[i]*e1.
+   
+   H.planes, which contains a list of orbits of totally isotropic lines in L \otimes QQ under g(H). As for H.lines, the corresponding plane is given by <p[i]*e1, p[i]*e2> where p[i] is the returned list.
+
+
+== Example ==
+
+Load sage and attach or load buildings.sage. e.g. (within the directory containing buildings.sage)
+
+sage: load("buildings.sage")
+
+Create a subgroup instance. 
+
+sage: H=SubGp_A2t()
+
+Calculate the Tits' building of H.
+
+sage: H.building()
+
+The program will then proceed to output large amount of text.
+
+This text is unlikely to be particularly interesting or meaningful to you, but may convince you that the program is doing something: depending on group (and parameters) the calculations may take a long time (upwards of several minutes to several hours would be fairly standard...).
+
+== Bug Reports ==
+
+Please feel free to report any bugs or send comments to  matthew.r.dawes@bath.edu.
+
+== Standard Disclaimers ==
+
+The software is provided 'as is', no warranty is provided, and the author shall not be held liable for any damages incurred through the use or downloading of the software or associated files, or information contained herein.
